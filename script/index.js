@@ -1,9 +1,9 @@
-const phoneInfo = async() => {
-    const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+const phoneInfo = async(search ='iphone') => {
+    const url = `https://openapi.programming-hero.com/api/phones?search=${search}`;
     const res = await fetch(url)
     const data = await res.json()
     display(data.data);
-
+    console.log(search);
 }
 
 
@@ -15,7 +15,7 @@ const phoneInfo = async() => {
  */
 const display = (phones) => {
     const phoneSection = document.getElementById('phone-info-section');
-
+    phoneSection.innerHTML= '';
     phones.forEach( phone => {
         const phoneDe = document.createElement('div');
         phoneDe.innerHTML = `
@@ -35,6 +35,11 @@ const display = (phones) => {
     });
 }
 
-
+// const phoneSearch = () => {
+//     const phoneName = 
+// }
+document.getElementById('phone-input').addEventListener('keyup', (e)=>{
+    phoneInfo(e.target.value);
+})
 
 phoneInfo()
